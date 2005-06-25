@@ -1,11 +1,13 @@
+Summary:	Linux Jobs
+Summary(pl):	Narzêdzia do obs³ugi zadañ pod Linuksem
 Name:		job
 Version:	1.5.0
 Release:	0.1
-Summary:	Linux Jobs
-Source0:	ftp://oss.sgi.com/projects/pagg/download/%{name}-%{version}.tar.gz
 License:	GPL
-URL:		http://oss.sgi.com/projects/pagg/
 Group:		Applications/System
+Source0:	ftp://oss.sgi.com/projects/pagg/download/%{name}-%{version}.tar.gz
+# Source0-md5:	4cc7c983765c934e33d4078bf530a978
+URL:		http://oss.sgi.com/projects/pagg/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -16,10 +18,19 @@ administrators to control process attachment to jobs. The PAM module
 allows the administrator to specify which point-of-entry services on
 the system (rlogin, gdm, xdm, ftp, etc.) should create new jobs.
 
+%description -l pl
+Pakiet job dostarcza zestaw poleceñ, modu³ PAM, strony podrêcznika
+oraz plik konfiguracyjny. Polecenia s³u¿± do wysy³ania sygna³ów do
+zadañ, oczekiwania na zadania, odczytu informacji o zadaniach oraz dla
+administratorów do kontroli do³±czania procesów do zadañ. Modu³ PAM
+umo¿liwia administratorowi okre¶lenie, które us³ugi wej¶ciowe systemu
+(rlogin, gdm, xdm, ftp itp.) powinny tworzyæ nowe zadania.
+
 %prep
 %setup -q -n %{name}
 
 %build
+# TODO: optflags
 %{__make} build \
 	ROOT="$RPM_BUILD_ROOT"
 
@@ -34,18 +45,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(754,root,root) /etc/rc.d/init.d/job
-%attr(755,root,root) /lib/security/pam_job.so
-%{_includedir}/job.h
-%attr(755,root,root) %{_prefix}/lib/libjob.so
+%doc AUTHORS COPYING INSTALL README
 %attr(755,root,root) %{_bindir}/jdetach
 %attr(755,root,root) %{_bindir}/jkill
 %attr(755,root,root) %{_bindir}/jsethid
 %attr(755,root,root) %{_bindir}/jstat
 %attr(755,root,root) %{_bindir}/jwait
 %attr(755,root,root) %{_bindir}/jattach
+%attr(755,root,root) %{_libdir}/libjob.so
+%attr(755,root,root) /%{_lib}/security/pam_job.so
+%attr(754,root,root) /etc/rc.d/init.d/job
 %{_mandir}/*/*
-%doc AUTHORS COPYING INSTALL README
+# -devel?
+#%{_includedir}/job.h
 
 %preun
 if [ "$1" = 0 ] ; then
@@ -57,18 +69,12 @@ if [ "$1" = 0 ] ; then
 		echo ""
 		exit 1
 	fi
-	which chkconfig > /dev/null
-	if [ $? -eq 0 ] ; then
-		chkconfig --del job
-	fi
+	/sbin/chkconfig --del job
 fi
 exit 0
 
 %post
-which chkconfig > /dev/null
-if [ $? -eq 0 ] ; then
-	chkconfig --add job
-fi
+/sbin/chkconfig --add job
 echo "You must add references to pam_job.so in the /etc/pam.d/* config"
 echo "files to enable the PAM services for creating jobs.  You only"
 echo "need to add the reference for services that you want to fall under"
