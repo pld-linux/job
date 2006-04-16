@@ -1,3 +1,5 @@
+# TODO
+# - optflags
 Summary:	Linux Jobs
 Summary(pl):	Narzêdzia do obs³ugi zadañ pod Linuksem
 Name:		job
@@ -8,6 +10,8 @@ Group:		Applications/System
 Source0:	ftp://oss.sgi.com/projects/pagg/download/%{name}-%{version}.tar.gz
 # Source0-md5:	4cc7c983765c934e33d4078bf530a978
 URL:		http://oss.sgi.com/projects/pagg/
+Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -88,7 +92,7 @@ echo "Example entry when required to use account modules:"
 echo ""
 echo "    account    optional   /lib/security/pam_job.so"
 echo ""
-echo "Consult the /usr/share/doc/job-1.4/README file for additional"
+echo "Consult the %{_docdir}/job-1.4/README file for additional"
 echo "information about the PAM module."
 echo ""
 exit 0
