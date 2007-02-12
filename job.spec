@@ -1,7 +1,7 @@
 # TODO
 # - optflags
 Summary:	Linux Jobs
-Summary(pl):	NarzÍdzia do obs≥ugi zadaÒ pod Linuksem
+Summary(pl.UTF-8):   Narzƒôdzia do obs≈Çugi zada≈Ñ pod Linuksem
 Name:		job
 Version:	1.5.0
 Release:	0.1
@@ -22,13 +22,13 @@ administrators to control process attachment to jobs. The PAM module
 allows the administrator to specify which point-of-entry services on
 the system (rlogin, gdm, xdm, ftp, etc.) should create new jobs.
 
-%description -l pl
-Pakiet job dostarcza zestaw poleceÒ, modu≥ PAM, strony podrÍcznika
-oraz plik konfiguracyjny. Polecenia s≥uø± do wysy≥ania sygna≥Ûw do
-zadaÒ, oczekiwania na zadania, odczytu informacji o zadaniach oraz dla
-administratorÛw do kontroli do≥±czania procesÛw do zadaÒ. Modu≥ PAM
-umoøliwia administratorowi okre∂lenie, ktÛre us≥ugi wej∂ciowe systemu
-(rlogin, gdm, xdm, ftp itp.) powinny tworzyÊ nowe zadania.
+%description -l pl.UTF-8
+Pakiet job dostarcza zestaw polece≈Ñ, modu≈Ç PAM, strony podrƒôcznika
+oraz plik konfiguracyjny. Polecenia s≈Çu≈ºƒÖ do wysy≈Çania sygna≈Ç√≥w do
+zada≈Ñ, oczekiwania na zadania, odczytu informacji o zadaniach oraz dla
+administrator√≥w do kontroli do≈ÇƒÖczania proces√≥w do zada≈Ñ. Modu≈Ç PAM
+umo≈ºliwia administratorowi okre≈õlenie, kt√≥re us≈Çugi wej≈õciowe systemu
+(rlogin, gdm, xdm, ftp itp.) powinny tworzyƒá nowe zadania.
 
 %prep
 %setup -q -n %{name}
