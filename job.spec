@@ -1,7 +1,7 @@
 # TODO
 # - optflags
 Summary:	Linux Jobs
-Summary(pl.UTF-8):   Narzędzia do obsługi zadań pod Linuksem
+Summary(pl.UTF-8):	Narzędzia do obsługi zadań pod Linuksem
 Name:		job
 Version:	1.5.0
 Release:	0.1
