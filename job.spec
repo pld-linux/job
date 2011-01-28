@@ -47,22 +47,6 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
-%defattr(644,root,root,755)
-%doc AUTHORS COPYING INSTALL README
-%attr(755,root,root) %{_bindir}/jdetach
-%attr(755,root,root) %{_bindir}/jkill
-%attr(755,root,root) %{_bindir}/jsethid
-%attr(755,root,root) %{_bindir}/jstat
-%attr(755,root,root) %{_bindir}/jwait
-%attr(755,root,root) %{_bindir}/jattach
-%attr(755,root,root) %{_libdir}/libjob.so
-%attr(755,root,root) /%{_lib}/security/pam_job.so
-%attr(754,root,root) /etc/rc.d/init.d/job
-%{_mandir}/*/*
-# -devel?
-#%{_includedir}/job.h
-
 %preun
 if [ "$1" = 0 ] ; then
 	SAFE=`fgrep -s pam_job.so /etc/pam.d/* | wc -l`
@@ -96,3 +80,19 @@ echo "Consult the %{_docdir}/job-1.4/README file for additional"
 echo "information about the PAM module."
 echo ""
 exit 0
+
+%files
+%defattr(644,root,root,755)
+%doc AUTHORS COPYING INSTALL README
+%attr(755,root,root) %{_bindir}/jdetach
+%attr(755,root,root) %{_bindir}/jkill
+%attr(755,root,root) %{_bindir}/jsethid
+%attr(755,root,root) %{_bindir}/jstat
+%attr(755,root,root) %{_bindir}/jwait
+%attr(755,root,root) %{_bindir}/jattach
+%attr(755,root,root) %{_libdir}/libjob.so
+%attr(755,root,root) /%{_lib}/security/pam_job.so
+%attr(754,root,root) /etc/rc.d/init.d/job
+%{_mandir}/*/*
+# -devel?
+#%{_includedir}/job.h
